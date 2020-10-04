@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark text-white bg-dark">
+  <a class="navbar-brand" href="{{path('accueil')}}">Accueil</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+                <div class="dropdown">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Voitures
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Voitures</a>
+                            <a class="dropdown-item" href="#">Maison</a>
+                            <a class="dropdown-item" href="#">Terrain</a>
+                        </div>
+                </div>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <div class="d-inline p-2 bg-dark text-white">
+                        <a class="nav-link" href="#">Admin</a>
+                    </div>
+                    <div class="d-inline p-2 bg-dark text-white">   
+                        <a class="nav-link" href="#"> Valider</a>
+                    </div>  
+                {% endif %}    
+    </ul>
+    <div class="topnav-right">
+          {% if not app.user %}
+          <a href="{{path('inscription')}}">Inscription</a>
+          <a href="{{path('login')}}">Connexion</a>
+          {% else %}
+          <a href="{{path('logout')}}">Deconnexion</a>
+          {% endif %}
+  </div>
+
+   
+  </div>
+</nav>

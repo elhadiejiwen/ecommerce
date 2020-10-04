@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}show{% endblock %}
+{% block MonTitre %}{% endblock %}
+{% block body %}
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col"> Titre</th>
+      <th scope="col">prix</th>
+      <th scope="col">negociable</th>
+      <th scope="col">description</th>
+      <th scope="col"> createdAt</th>
+      <th scope="col"> nb de vues</th>
+      {# <th scope="col"> publier par</th> #}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{annonce.id}}</th>
+      <td>{{annonce.titre}}</td>
+      <td>{{annonce.prix}}</td>
+      <td>{{annonce.negociable}}</td>
+      <td>{{annonce.description}}</td>
+      <td>{{annonce.createdAt | date("m/d/Y")}}</td>
+      <td>{{annonce.seen}}</td>
+      {# <td>{{annonce.user.username}}</td> #}
+    </tr>
+  </tbody>  
+</tbable>
+
+{% endblock %}

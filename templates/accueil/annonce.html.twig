@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce{% endblock %}
+
+{% block body %}
+<style>
+li {
+	display: inline;
+	list-style: none; /* pour enlever les puces sur IE7 */
+	margin: 10px;
+}
+li a {
+	display: inline-block;
+	width: 100px;
+	padding: 5px 10px;
+	text-decoration: none;
+	color: #fff;
+	font-weight: bold;
+	background: #999;
+} 
+</style>
+
+{% for message in app.flashes('success') %}
+  <div class="alert alert-success">
+    {{message}}
+  </div>
+{% endfor %}
+
+    {# {% if admin %} #}
+      
+    {# {% elseif %} #}
+    <div class="row no-gutters">
+         {% for annonce in annonces %}
+            <div class="col-12 col-lg-6 p-1 rounded border">
+                 <div class="cards mb-3">
+                     <div class="row no-gutters align-items-center p-2 ">
+                        <div class="col-12 col-md-4">
+                            <img class="card-img-top" src="{{asset('image/annonce/' ~ annonce.image1.libelle)}}" alt="Card image cap">
+                         </div>
+                        <div class="col">
+                            <div class="card-body">
+                                <div class="card-title">
+                                     {{annonce.titre}}
+                                </div>
+                                <div class="card-text">
+                                     Description: {{annonce.description}}
+                                </div>  
+                                <div class="card-text">
+                                    Prix: {{annonce.prix}}
+                                </div>
+                                <div class="card-text">
+                                     negociable: {{annonce.negociable}}
+                                </div>
+                                <div class="card-text">
+                                     Nombre de vues: {{annonce.seen}}
+                                </div> 
+                                
+                                
+                             </div>
+                        </div>
+                    </div> 
+                </div>
+                <ul>
+                <li><a href="{{path('show', {'id': annonce.id})}}" class="btn btn-info">Lire </a></li>
+                  {# {% if admin %}
+                  <li>
+                    <a href="{{path('modif', {'id': annonce.id})}}" class="btn btn-success" style="text-align: center"> Modifier</a>
+                  </li>
+                  <li>
+                        <form action="#" method= "POST" class="col" onsubmit="return confirm('voulez-vous bien supprimer ?')">
+                            <input type="hidden" name="_method" value="delete">
+                            <input type="hidden" name="_token" value="{{csrf_token('supp' ~ annonce.id )}}">
+                            <input type="submit" class="btn btn-danger" value="Supprimer">
+                        </form> 
+                   </li>  
+                {% endif %} #}
+                </ul>
+            </div>                                
+                {% endfor %}
+            </div>
+    </div> 
+{% endblock %}

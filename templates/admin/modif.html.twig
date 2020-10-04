@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce{% endblock %}
+
+{% block body %}
+   {{form_start(form)}}
+   {{form_widget(form)}}
+   {% if isModification %}
+   <input type="submit" class="btn btn-success" value="modifier">
+   {% else %}
+   <input type="submit" class="btn btn-warning" value="ajouter">
+   {% endif %}
+   {{form_end(form)}}
+{% endblock %}
+

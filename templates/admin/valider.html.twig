@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}show{% endblock %}
+{% block MonTitre %}{% endblock %}
+{% block body %}
+<table class="table">
+  <thead class="thead-dark">
+       <tr>
+            <th scope="col">id</th>
+            <th scope="col"> Titre</th>
+            <th scope="col">prix</th>
+            <th scope="col">negociable</th>
+            <th scope="col">description</th>
+            <th scope="col"> createdAt</th>
+            <th scope="col"> valide</th>
+            {# <th scope="col"> publier par</th> #}
+            <th scope="col"> archived </th>
+       </tr>
+    </thead>
+{% for annonce in annonces %}  
+        <tbody>
+            <tr>
+            <th scope="row">{{annonce.id}}</th>
+            <td>{{annonce.titre}}</td>
+            <td>{{annonce.prix}}</td>
+            <td>{{annonce.negociable}}</td>
+            <td>{{annonce.description}}</td>
+            <td>{{annonce.createdAt | date("m/d/Y")}}</td>
+            <td>{{annonce.valide}} 
+             {% if annonce.valide == false %}
+               <a href="{{path('v',{'id': annonce.id})}}" class="btn btn-success">valider</a>
+             {% endif %}  
+            </td>
+              {# <td>{{annonce.user.nom}}</td>  #}
+             <td>{{annonce.archived}}</td>
+            </tr>
+        </tbody>  
+{% endfor %}
+ </table> 
+{% endblock %}
